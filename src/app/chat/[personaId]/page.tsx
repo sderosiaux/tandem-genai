@@ -48,6 +48,30 @@ export default function ChatPage() {
     }
   }, [isLoaded, hasUserProfile, router])
 
+  // Add messages with delay between each (simulates natural typing)
+  const addMessagesWithDelay = useCallback(async (messages: string[], onDone?: () => void) => {
+    for (let i = 0; i < messages.length; i++) {
+      const msg = messages[i]
+
+      if (i > 0) {
+        // Show typing indicator between messages
+        setIsTyping(true)
+        // Random delay between 800ms and 2000ms
+        const delay = 800 + Math.random() * 1200
+        await new Promise(resolve => setTimeout(resolve, delay))
+        setIsTyping(false)
+      }
+
+      addMessage(personaId, { role: 'assistant', content: msg })
+
+      // Small pause after adding message
+      if (i < messages.length - 1) {
+        await new Promise(resolve => setTimeout(resolve, 100))
+      }
+    }
+    onDone?.()
+  }, [personaId, addMessage])
+
   // Handle persona initiation
   const initiateConversation = useCallback(async () => {
     if (!persona || !userProfile || hasInitiated || localMessages.length > 0) return
@@ -62,7 +86,7 @@ export default function ChatPage() {
       onChunk: (chunk) => {
         setStreamingMessage((prev) => prev + chunk)
       },
-      onComplete: (fullMessage) => {
+      onComplete: async (fullMessage) => {
         setIsTyping(false)
         setStreamingMessage('')
         // Split multiple messages separated by ---
@@ -70,12 +94,10 @@ export default function ChatPage() {
           .split(/\n?---\n?/)
           .map((m) => m.trim())
           .filter((m) => m.length > 0)
-        // Add each message separately
-        messages.forEach((msg) => {
-          addMessage(personaId, { role: 'assistant', content: msg })
+        // Add each message with delay
+        await addMessagesWithDelay(messages, () => {
+          router.replace(`/chat/${personaId}`)
         })
-        // Remove the initiate param from URL
-        router.replace(`/chat/${personaId}`)
       },
       onError: (err) => {
         console.error('Error generating first message:', err)
@@ -84,7 +106,7 @@ export default function ChatPage() {
         setError(`Erreur: ${err.message}`)
       },
     })
-  }, [persona, userProfile, hasInitiated, localMessages.length, personaId, addMessage, router])
+  }, [persona, userProfile, hasInitiated, localMessages.length, personaId, addMessagesWithDelay, router])
 
   // Auto-initiate if requested
   useEffect(() => {
@@ -122,7 +144,7 @@ export default function ChatPage() {
       onChunk: (chunk) => {
         setStreamingMessage((prev) => prev + chunk)
       },
-      onComplete: (fullMessage) => {
+      onComplete: async (fullMessage) => {
         setIsTyping(false)
         setStreamingMessage('')
         // Split multiple messages separated by ---
@@ -130,10 +152,8 @@ export default function ChatPage() {
           .split(/\n?---\n?/)
           .map((m) => m.trim())
           .filter((m) => m.length > 0)
-        // Add each message separately
-        messages.forEach((msg) => {
-          addMessage(personaId, { role: 'assistant', content: msg })
-        })
+        // Add each message with delay between them
+        await addMessagesWithDelay(messages)
       },
       onError: (err) => {
         console.error('Error sending message:', err)

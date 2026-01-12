@@ -83,6 +83,7 @@ export interface Persona {
   educationLevel: EducationLevel
   quirks: string[]  // Tics, manies, expressions favorites
   opinions: string[] // Opinions tranchées sur certains sujets
+  emojis: string[]  // Emojis favoris (utilisés avec modération)
   avatar?: string
   isPreset: boolean
   createdAt: Date
