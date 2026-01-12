@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tandem GenAI
 
-## Getting Started
+Practice French with AI conversation partners who feel like real people.
 
-First, run the development server:
+## Why?
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Learning a language from textbooks is boring. Apps like Duolingo teach you vocabulary, but they don't prepare you for real conversations with real people.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The best way to learn is to talk. But finding native speakers to practice with is hard, scheduling is a pain, and let's be honest — it can be intimidating.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Tandem GenAI** gives you conversation partners available 24/7, each with their own personality, background, and quirks. They make mistakes (just like real learners), have opinions, tell jokes, and remember your past conversations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## What is it?
 
-## Learn More
+A web app where you chat in French with AI personas who are "learning French" just like you might find on language exchange apps like Tandem or HelloTalk.
 
-To learn more about Next.js, take a look at the following resources:
+Each persona is a distinct character:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Jake** (USA) — A tech bro from Texas who makes terrible dad jokes and thinks American football is superior to soccer
+- **Maria** (Brazil) — An enthusiastic art student who uses too many emojis and tells dramatic stories about her exes
+- **Hans** (Germany) — A reserved engineer who quotes philosophers and has strong opinions about punctuality
+- **Yuki** (Japan) — A shy UX designer who apologizes constantly and makes obscure anime references
+- **James** (UK) — A posh investor who vouvoie everyone and drops passive-aggressive remarks
+- **Sofia** (Italy) — A passionate chef who mixes Italian into her French and WRITES IN CAPS when excited
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+They're not perfect French speakers — they each have a different level and make realistic mistakes based on their native language (just like real learners do).
 
-## Deploy on Vercel
+## Who is it for?
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- French learners who want low-pressure conversation practice
+- People preparing for trips to France or French-speaking countries
+- Anyone who wants to practice without the anxiety of talking to strangers
+- Language enthusiasts who enjoy chatting with interesting characters
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Features
+
+- **6 unique personas** with distinct personalities, humor styles, and opinions
+- **Realistic language errors** based on each persona's level and native language
+- **Conversation memory** — they remember what you talked about before
+- **Natural chat flow** — they can send multiple messages, change topics, disagree with you
+- **No judgment** — practice as much as you want, make mistakes, try again
+
+---
+
+*Built with Next.js and OpenAI. Conversations stay in your browser.*
